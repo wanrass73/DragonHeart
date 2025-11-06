@@ -130,7 +130,12 @@ sudo systemctl enable NetworkManager
 
 # --- 7. TUKAR TEMA SDDM ---
 echo "--- 7. Menetapkan tema SDDM ke Sugar Candy ---"
-# Skrip sddm-git-theme dari AUR
-sudo sddm-git-theme -s sugar-candy || true
+# Kaedah yang lebih kukuh: Cipta fail konfigurasi secara terus.
+THEME_CONF_DIR="/etc/sddm.conf.d"
+THEME_CONF_FILE="$THEME_CONF_DIR/theme.conf"
+echo "Memastikan direktori $THEME_CONF_DIR wujud..."
+sudo mkdir -p "$THEME_CONF_DIR"
+echo "Menulis konfigurasi tema ke $THEME_CONF_FILE..."
+echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee "$THEME_CONF_FILE" > /dev/null
 
 echo "✅ PERSIAAPAN DRAGONHEART SELESAI! Sila REBOOT untuk menikmati persediaan baharu."
