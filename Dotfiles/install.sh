@@ -9,6 +9,14 @@
 # Henti skrip jika terdapat ralat
 set -e
 
+# --- -1. PERSEDIAAN SUDO ---
+echo "Skrip ini memerlukan hak pentadbir untuk beberapa arahan."
+echo "Sila masukkan kata laluan anda jika diminta untuk meneruskan."
+# Minta kata laluan sudo di awal dan kekalkan sesi
+sudo -v
+# Kekalkan sesi sudo aktif
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # --- 0. DEKLARASI PEMBOLEH UBAH ---
 # Dapatkan direktori semasa (ia sepatutnya ~/Dotfiles)
 DOTFILES_DIR=$(pwd)
