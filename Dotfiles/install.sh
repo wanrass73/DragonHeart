@@ -163,11 +163,18 @@ sudo mkdir -p /usr/share/grub/fonts
 sudo cp "$DOTFILES_DIR/grub/terminus-14.pf2" /usr/share/grub/fonts/
 
 # Kemas kini fail /etc/default/grub
-sudo sed -i 's|#GRUB_BACKGROUND=.*|GRUB_BACKGROUND="/boot/grub/garuda_bg_safe.png"|' /etc/default/grub
-sudo sed -i 's|#GRUB_FONT=.*|GRUB_FONT="/usr/share/grub/fonts/terminus-14.pf2"|' /etc/default/grub
-# Jika baris tidak wujud, tambahkannya
-grep -qF 'GRUB_BACKGROUND' /etc/default/grub || echo 'GRUB_BACKGROUND="/boot/grub/garuda_bg_safe.png"' | sudo tee -a /etc/default/grub
-grep -qF 'GRUB_FONT' /etc/default/grub || echo 'GRUB_FONT="/usr/share/grub/fonts/terminus-14.pf2"' | sudo tee -a /etc/default/grub
+# Kemas kini atau tambah baris GRUB_BACKGROUND
+if grep -q "^#\?GRUB_BACKGROUND=" /etc/default/grub; then
+    sudo sed -i 's|^#\?GRUB_BACKGROUND=.*|GRUB_BACKGROUND="/boot/grub/garuda_bg_safe.png"|' /etc/default/grub
+else
+    echo 'GRUB_BACKGROUND="/boot/grub/garuda_bg_safe.png"' | sudo tee -a /etc/default/grub
+fi
+# Kemas kini atau tambah baris GRUB_FONT
+if grep -q "^#\?GRUB_FONT=" /etc/default/grub; then
+    sudo sed -i 's|^#\?GRUB_FONT=.*|GRUB_FONT="/usr/share/grub/fonts/terminus-14.pf2"|' /etc/default/grub
+else
+    echo 'GRUB_FONT="/usr/share/grub/fonts/terminus-14.pf2"' | sudo tee -a /etc/default/grub
+fi
 
 # Jana semula konfigurasi GRUB
 sudo grub-mkconfig -o /boot/grub/grub.cfg
