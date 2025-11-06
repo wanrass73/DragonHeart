@@ -52,7 +52,7 @@ CODEC_PKGS=(
 
 # Pakej AUR (Dipasang menggunakan Paru)
 AUR_PKGS=(
-    sddm-sugar-candy-git 
+    sddm-sugar-candy-git candy-icons-git 
 )
 
 
