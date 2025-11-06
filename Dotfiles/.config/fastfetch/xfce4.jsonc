@@ -1,0 +1,66 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+    
+    // TETAPAN LOGO GLOBAL (WAJIB ADA UNTUK TERMINAL XFCE4)
+    "logoType": "file",
+    "logoBackend": "chafa",
+    
+    "logo": {
+        // !!! LOGO RAWAK AKTIF !!!
+        // Ia akan memilih satu fail PNG atau SVG secara rawak dari folder ikon anda
+        "source": "$(find \"/home/aiwasevil/Pictures/icons/\" -type f \\( -name \"*.png\" -o -name \"*.svg\" \\) | sort -R | head -1)", 
+        "width": 30
+    },
+    
+    "modules": [
+        "user", 
+        "title", 
+        "separator", 
+        {
+            "type": "os",
+            "key": "  OS" 
+        },
+        {
+            "type": "kernel",
+            "key": "  Kernel" 
+        },
+        {
+            "type": "uptime",
+            "key": "  Uptime" 
+        },
+        {
+            "type": "wm",
+            "key": "  WM" 
+        },
+        {
+            "type": "terminal",
+            "key": "  Terminal"
+        },
+        {
+            "type": "shell",
+            "key": "  Shell"
+        },
+        // --- MODUL MEDIA PLAYER (NOW PLAYING) ---
+        {
+            "type": "media",
+            "key": "  Now Playing",
+            "format": "{artist} - {title}" 
+        },
+        // --- MODUL PERKAKASAN ---
+        {
+            "type": "cpu",
+            "key": "  CPU"
+        },
+        {
+            "type": "memory",
+            "key": "  RAM"
+        },
+        "disk", 
+        "break", 
+        "colors"
+    ],
+    
+    "display": {
+        "separator": " 󰌷 " 
+    }
+}

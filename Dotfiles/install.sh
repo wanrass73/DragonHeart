@@ -1,0 +1,128 @@
+#!/bin/bash
+#
+# FILE: install.sh
+# AUTHOR: aiwasevil (DragonHeart Project)
+# DESCRIPTION: Automated installation script for Arch Linux Bare Metal deployment.
+#              Installs all necessary packages and links Dotfiles configurations.
+#
+
+# Henti skrip jika terdapat ralat
+set -e
+
+# --- 0. DEKLARASI PEMBOLEH UBAH ---
+# Dapatkan direktori semasa (ia sepatutnya ~/Dotfiles)
+DOTFILES_DIR=$(pwd)
+CONFIG_DIR="$HOME/.config"
+
+# Senarai Aplikasi Teras Penuh (Disahkan melalui pacman -Qs)
+CORE_PKGS=(
+    # SHELL & TOOLS
+    fish starship fastfetch lsd eza git sudo base-devel 
+    
+    # XFCE4 & UTILITIES
+    xfce4 xfce4-goodies 
+    mousepad xfce4-screenshooter catfish # Editor Teks dan Carian
+    p7zip unrar # Pengurusan Arkib
+    thunar-archive-plugin thunar-media-tags-plugin # Plugin Thunar
+    
+    # AUDIO & MULTIMEDIA
+    vlc yt-dlp pavucontrol parole               
+    pipewire pipewire-alsa pipewire-pulse wireplumber # Audio System
+    
+    # RANGKAIAN & DISPLAY MANAGER
+    sddm networkmanager network-manager-applet 
+    
+    # FONTS (penting untuk ikon lsd/exa)
+    ttf-font-awesome ttf-fira-code ttf-nerd-fonts-symbols 
+)
+
+# Pakej Codec Tambahan (Penting untuk multimedia penuh)
+CODEC_PKGS=(
+    gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
+    libdvdcss libmpeg2 libx264 libx265 libvpx
+)
+
+# Pakej AUR (Dipasang menggunakan Paru)
+AUR_PKGS=(
+    sddm-sugar-candy-git 
+)
+
+
+# --- 1. KEMAS KINI SISTEM DAN PASANG ALAT UTAMA (pacman) ---
+echo "--- 1. Mengemas kini sistem dan memasang alat asas (pacman) ---"
+sudo pacman -Syu --noconfirm "${CORE_PKGS[@]}"
+
+# --- 2. PASANG CODEC MULTIMEDIA ---
+echo "--- 2. Memasang Codec Multimedia ---"
+sudo pacman -S --noconfirm "${CODEC_PKGS[@]}"
+
+# --- 3. PERSIAAPAN PARU & PEMASANGAN AUR ---
+echo "--- 3. Memastikan Paru berada di PATH dan mengemas kini AUR ---"
+# Paru sepatutnya telah dipasang di Langkah 1.
+paru -Syu --noconfirm || true
+
+echo "--- 3b. Memasang pakej AUR (sddm-sugar-candy-git) ---"
+paru -S --noconfirm "${AUR_PKGS[@]}"
+
+# --- 4. PENYEDIAAN FOLDER KONFIGURASI DAN SIMLINK ---
+echo "--- 4. Menyediakan folder konfigurasi dan Simlink ---"
+
+# Cipta folder .config
+mkdir -p "$CONFIG_DIR"
+
+# Buang symlink lama yang mungkin wujud
+rm -rf "$CONFIG_DIR/fish" "$CONFIG_DIR/xfce4" "$CONFIG_DIR/fastfetch"
+
+# Cipta Simlink Baharu
+ln -s "$DOTFILES_DIR/.config/fish" "$CONFIG_DIR/fish"
+ln -s "$DOTFILES_DIR/.config/xfce4" "$CONFIG_DIR/xfce4"
+ln -s "$DOTFILES_DIR/.config/fastfetch" "$CONFIG_DIR/fastfetch"
+
+# Symlink untuk fail dot-file terus di $HOME (jika ada)
+# Contoh:
+# ln -s "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc" || true
+
+
+# --- 4b. PENYEDIAAN WALLPAPER ---
+echo "--- 4b. Menyediakan Wallpaper Desktop ---"
+
+# Laluan Penuh untuk Wallpaper Anda di SISTEM BARU
+WALLPAPER_DEST="/home/$USER/Pictures/wallpapers/Dr460nized_Honeycomb.png"
+
+# Lokasi fail wallpaper anda di dalam Dotfiles untuk penyalinan
+WALLPAPER_SOURCE="$DOTFILES_DIR/Pictures/wallpapers/Dr460nized_Honeycomb.png"
+
+# Cipta folder wallpapers di $HOME/Pictures
+mkdir -p "$HOME/Pictures/wallpapers"
+
+# Salin fail wallpaper
+if [ -f "$WALLPAPER_SOURCE" ]; then
+    cp "$WALLPAPER_SOURCE" "$WALLPAPER_DEST"
+    echo "Wallpaper Dr460nized_Honeycomb.png berjaya disalin."
+else
+    echo "Ralat: Fail wallpaper tidak dijumpai di $WALLPAPER_SOURCE. Teruskan tanpa wallpaper."
+fi
+
+# Kemas kini konfigurasi Xfce4
+echo "Mengemas kini tetapan Xfce Desktop..."
+# Tukar path wallpaper:
+xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s "$WALLPAPER_DEST" --type string --create -n || true
+xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/image-style -s 5 # 5 = Zoom/Fill
+
+
+# --- 5. TUKAR SHELL KE FISH ---
+echo "--- 5. Menukar shell default ke Fish ---"
+chsh -s /usr/bin/fish
+
+# --- 6. PENGAKTIFAN PERKHIDMATAN ---
+echo "--- 6. Mengaktifkan SDDM dan NetworkManager ---"
+sudo systemctl enable sddm
+sudo systemctl start sddm # Mula sddm pada pemasangan pertama
+sudo systemctl enable NetworkManager
+
+# --- 7. TUKAR TEMA SDDM ---
+echo "--- 7. Menetapkan tema SDDM ke Sugar Candy ---"
+# Skrip sddm-git-theme dari AUR
+sudo sddm-git-theme -s sugar-candy || true
+
+echo "✅ PERSIAAPAN DRAGONHEART SELESAI! Sila REBOOT untuk menikmati persediaan baharu."

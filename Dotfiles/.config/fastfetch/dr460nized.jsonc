@@ -1,0 +1,48 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "modules": [
+        "os",
+        "host",
+        "kernel",
+        "uptime",
+        "packages",
+        "shell",
+        "de",
+        "wm",
+        "wm_theme",
+        "theme",
+        "icons",
+        "font",
+        "terminal",
+        "terminal_font",
+        {
+            "type": "cpu"
+        },
+        {
+            "type": "gpu",
+            "key": "GPU",
+            "format": "{2} ({4})"
+        },
+        {
+            "type": "memory",
+            "key": "Memory",
+            "format": "{/1} / {2} ({3}%%)" // Tanda %% telah dibetulkan di sini (jika guna printf)
+        },
+        {
+            "type": "display",
+            "key": "Display(s)",
+            "detect_size": true,
+            "format": "{1}x{2}, {3} Hz {4} {5}"
+        }
+    ],
+    "logo": {
+        "type": "file",
+        "source": "/usr/share/fastfetch/logos/garuda.txt"
+    },
+    "separator": " 󰄾 ",
+    "color": {
+        "key": "12"
+    },
+    "key_color": "11",
+    "separator_color": "12"
+}
