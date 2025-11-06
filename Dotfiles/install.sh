@@ -139,3 +139,5 @@ echo "Menulis konfigurasi tema ke $THEME_CONF_FILE..."
 echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee "$THEME_CONF_FILE" > /dev/null
 
 echo "✅ PERSIAAPAN DRAGONHEART SELESAI! Sila REBOOT untuk menikmati persediaan baharu."
+
+exec fish
