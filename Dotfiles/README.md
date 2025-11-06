@@ -30,3 +30,4 @@ Anda hanya perlu memasang sistem Arch Linux yang paling asas dan ikuti 3 langkah
 git clone https://github.com/wanrass73/DragonHeart.git
 cd DragonHeart/Dotfiles
 ./install.sh
+reboot
