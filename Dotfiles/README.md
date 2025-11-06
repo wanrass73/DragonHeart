@@ -27,5 +27,5 @@ Anda hanya perlu memasang sistem Arch Linux yang paling asas dan ikuti 3 langkah
 ### 1. Klon Repositori
 
 ```bash
-git clone [https://github.com/aiwasevil/DragonHeart.git](https://github.com/aiwasevil/DragonHeart.git) ~/Dotfiles
+git clone https://github.com/wanrass73/DragonHeart.git ~/Dotfiles
 cd ~/Dotfiles
