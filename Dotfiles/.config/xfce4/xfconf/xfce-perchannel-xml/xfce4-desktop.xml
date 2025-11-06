@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<channel name="xfce4-desktop" version="1.0">
+  <property name="last-settings-migration-version" type="uint" value="1"/>
+  <property name="last" type="empty">
+    <property name="window-width" type="int" value="650"/>
+    <property name="window-height" type="int" value="547"/>
+  </property>
+  <property name="backdrop" type="empty">
+    <property name="screen0" type="empty">
+      <property name="monitorVGA-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="last-image" type="string" value="/home/aiwasevil/Pictures/wallpapers/StaryNightMoon.jpg"/>
+          <property name="backdrop-cycle-enable" type="bool" value="true"/>
+          <property name="backdrop-cycle-period" type="int" value="0"/>
+          <property name="backdrop-cycle-timer" type="uint" value="30"/>
+          <property name="backdrop-cycle-random-order" type="bool" value="true"/>
+        </property>
+      </property>
+    </property>
+  </property>
+  <property name="desktop-icons" type="empty">
+    <property name="icon-size" type="uint" value="32"/>
+    <property name="gravity" type="int" value="1"/>
+    <property name="confirm-sorting" type="bool" value="false"/>
+  </property>
+</channel>
