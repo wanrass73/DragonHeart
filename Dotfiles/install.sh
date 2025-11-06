@@ -138,6 +138,16 @@ sudo mkdir -p "$THEME_CONF_DIR"
 echo "Menulis konfigurasi tema ke $THEME_CONF_FILE..."
 echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee "$THEME_CONF_FILE" > /dev/null
 
+# --- 7b. PEMASANGAN FON PENGGUNA ---
+echo "--- 7b. Memasang fon pengguna ---"
+# Cipta direktori fon jika ia tidak wujud
+mkdir -p "$HOME/.local/share/fonts"
+# Salin semua fon dari repositori ke direktori fon pengguna
+cp -r "$DOTFILES_DIR/fonts/"* "$HOME/.local/share/fonts/"
+# Bina semula cache fon
+echo "Membina semula cache fon..."
+fc-cache -fv
+
 # --- 8. PENYEDIAAN TEMA GRUB ---
 echo "--- 8. Menyediakan tema GRUB ---"
 # Salin fail imej latar belakang dan fon
