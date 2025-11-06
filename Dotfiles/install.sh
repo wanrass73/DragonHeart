@@ -25,7 +25,7 @@ CONFIG_DIR="$HOME/.config"
 # Senarai Aplikasi Teras Penuh (Disahkan melalui pacman -Qs)
 CORE_PKGS=(
     # SHELL & TOOLS
-    fish starship fastfetch lsd eza git sudo base-devel virtualbox-guest-utils 
+    fish starship fastfetch lsd eza git sudo base-devel 
     
     # XFCE4 & UTILITIES
     xfce4 xfce4-goodies 
@@ -56,7 +56,30 @@ AUR_PKGS=(
 )
 
 
-# --- 1. KEMAS KINI SISTEM DAN PASANG ALAT UTAMA (pacman) ---
+# --- 1. PENGESANAN & PEMASANGAN PEMACU GRAFIK ---
+echo "--- 1. Mengesan dan memasang pemacu grafik... ---"
+if lspci | grep -i 'VGA.*VirtualBox'; then
+    echo "Mesin maya VirtualBox dikesan."
+    sudo pacman -S --noconfirm virtualbox-guest-utils
+    # Aktifkan perkhidmatan VirtualBox
+    sudo systemctl enable vboxservice.service
+elif lspci | grep -i 'VGA.*Intel'; then
+    echo "Kad grafik Intel dikesan."
+    sudo pacman -S --noconfirm xf86-video-intel
+elif lspci | grep -i 'VGA.*AMD'; then
+    echo "Kad grafik AMD dikesan."
+    sudo pacman -S --noconfirm xf86-video-amdgpu
+elif lspci | grep -i 'VGA.*NVIDIA'; then
+    echo "Kad grafik NVIDIA dikesan."
+    # Memasang pemacu sumber terbuka 'nouveau'
+    sudo pacman -S --noconfirm xf86-video-nouveau
+else
+    echo "Tidak dapat mengesan kad grafik yang disokong secara automatik."
+    echo "Sila pasang pemacu grafik yang betul secara manual."
+fi
+
+
+# --- 1b. KEMAS KINI SISTEM DAN PASANG ALAT UTAMA (pacman) ---
 echo "--- 1. Mengemas kini sistem dan memasang alat asas (pacman) ---"
 sudo pacman -Syu --noconfirm "${CORE_PKGS[@]}"
 
@@ -134,7 +157,6 @@ echo "--- 6. Mengaktifkan SDDM dan NetworkManager ---"
 sudo systemctl enable sddm
 sudo systemctl start sddm # Mula sddm pada pemasangan pertama
 sudo systemctl enable NetworkManager
-sudo systemctl enable vboxservice.service
 
 # --- 7. TUKAR TEMA SDDM ---
 echo "--- 7. Menetapkan tema SDDM ke Sugar Candy ---"
