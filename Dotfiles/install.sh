@@ -89,7 +89,22 @@ sudo pacman -S --noconfirm "${CODEC_PKGS[@]}"
 
 # --- 3. PERSIAAPAN PARU & PEMASANGAN AUR ---
 echo "--- 3. Memastikan Paru berada di PATH dan mengemas kini AUR ---"
-# Paru sepatutnya telah dipasang di Langkah 1.
+
+# Pasang base-devel dan git jika belum ada (diperlukan untuk makepkg)
+sudo pacman -S --noconfirm base-devel git
+
+# Semak jika paru dipasang, jika tidak, pasang dari AUR
+if ! command -v paru &> /dev/null; then
+    echo "Paru tidak ditemui. Memasang Paru dari AUR..."
+    ( # Jalankan dalam sub-shell untuk mengelakkan perubahan direktori kekal
+        cd /tmp
+        git clone https://aur.archlinux.org/paru.git
+        cd paru
+        makepkg -si --noconfirm
+    )
+fi
+
+# Kemas kini AUR dan pasang pakej
 paru -Syu --noconfirm || true
 
 echo "--- 3b. Memasang pakej AUR (sddm-sugar-candy-git) ---"
