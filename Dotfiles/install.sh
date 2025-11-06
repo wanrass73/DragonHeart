@@ -28,7 +28,7 @@ CORE_PKGS=(
     fish starship fastfetch lsd eza git sudo base-devel 
     
     # XFCE4 & UTILITIES
-    xfce4 xfce4-goodies 
+    xfce4 xfce4-goodies materia-gtk-theme 
     mousepad xfce4-screenshooter catfish # Editor Teks dan Carian
     p7zip unrar # Pengurusan Arkib
     thunar-archive-plugin thunar-media-tags-plugin # Plugin Thunar
@@ -52,7 +52,7 @@ CODEC_PKGS=(
 
 # Pakej AUR (Dipasang menggunakan Paru)
 AUR_PKGS=(
-    sddm-sugar-candy-git candy-icons-git 
+    sddm-sugar-candy-git candy-icons-git bibata-cursor-theme-bin 
 )
 
 
