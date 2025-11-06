@@ -91,6 +91,13 @@ ln -s "$DOTFILES_DIR/.config/fastfetch" "$CONFIG_DIR/fastfetch"
 # ln -s "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc" || true
 
 
+# --- 4a. PENYEDIAAN DIREKTORI PENGGUNA ---
+echo "--- 4a. Memastikan direktori pengguna standard wujud ---"
+mkdir -p "$HOME/Documents"
+mkdir -p "$HOME/Pictures"
+mkdir -p "$HOME/Videos"
+mkdir -p "$HOME/Music"
+
 # --- 4b. PENYEDIAAN WALLPAPER ---
 echo "--- 4b. Menyediakan Wallpaper Desktop ---"
 
