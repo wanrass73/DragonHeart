@@ -25,7 +25,7 @@ CONFIG_DIR="$HOME/.config"
 # Senarai Aplikasi Teras Penuh (Disahkan melalui pacman -Qs)
 CORE_PKGS=(
     # SHELL & TOOLS
-    fish starship fastfetch lsd eza git sudo base-devel 
+    fish starship fastfetch lsd eza git sudo base-devel virtualbox-guest-utils 
     
     # XFCE4 & UTILITIES
     xfce4 xfce4-goodies 
@@ -134,6 +134,7 @@ echo "--- 6. Mengaktifkan SDDM dan NetworkManager ---"
 sudo systemctl enable sddm
 sudo systemctl start sddm # Mula sddm pada pemasangan pertama
 sudo systemctl enable NetworkManager
+sudo systemctl enable vboxservice.service
 
 # --- 7. TUKAR TEMA SDDM ---
 echo "--- 7. Menetapkan tema SDDM ke Sugar Candy ---"
