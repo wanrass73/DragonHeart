@@ -170,6 +170,11 @@ echo "Mengemas kini tetapan Xfce Desktop..."
 xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s "$WALLPAPER_DEST" --type string --create -n || true
 xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/image-style -s 5 --type int --create -n # 5 = Zoom/Fill
 
+# Tetapkan tema GTK dan tema pengurus tetingkap
+echo "Menetapkan tema GTK dan pengurus tetingkap..."
+xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-Dark" --create -n || true
+xfconf-query -c xfwm4 -p /general/theme -s "Adwaita-Dark" --create -n || true
+
 
 # --- 5. TUKAR SHELL KE FISH ---
 echo "--- 5. Menukar shell default ke Fish ---"
