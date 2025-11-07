@@ -196,6 +196,11 @@ echo "Membersihkan cache Xfce4 dan memulakan semula panel..."
 rm -rf "$HOME/.cache/xfce4/session/"
 xfce4-panel -r || true
 
+# Tambah Picom ke autostart Xfce
+echo "Menambah Picom ke autostart Xfce..."
+mkdir -p "$HOME/.config/autostart"
+echo -e "[Desktop Entry]\nType=Application\nExec=picom\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Picom\nComment=Compositor" | tee "$HOME/.config/autostart/picom.desktop" > /dev/null
+
 
 # --- 5. TUKAR SHELL KE FISH ---
 echo "--- 5. Menukar shell default ke Fish ---"
