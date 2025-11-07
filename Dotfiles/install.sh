@@ -175,6 +175,10 @@ echo "Menetapkan tema GTK dan pengurus tetingkap..."
 xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-Dark" --create -n || true
 xfconf-query -c xfwm4 -p /general/theme -s "Adwaita-Dark" --create -n || true
 
+# Tetapkan sesi Xfce lalai
+echo "Menetapkan sesi Xfce lalai kepada Xfce Session..."
+xfconf-query -c xfce4-session -p /general/SessionName -s "Xfce Session" --create -n || true
+
 
 # --- 5. TUKAR SHELL KE FISH ---
 echo "--- 5. Menukar shell default ke Fish ---"
