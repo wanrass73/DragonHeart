@@ -243,9 +243,9 @@ fi
 
 # Kemas kini atau tambah baris GRUB_GFXMODE
 if grep -q "^#\?GRUB_GFXMODE=" /etc/default/grub; then
-    sudo sed -i 's|^#\?GRUB_GFXMODE=.*|GRUB_GFXMODE="auto"|' /etc/default/grub
+    sudo sed -i 's|^#\?GRUB_GFXMODE=.*|GRUB_GFXMODE="1280x800"|' /etc/default/grub
 else
-    echo 'GRUB_GFXMODE="auto"' | sudo tee -a /etc/default/grub
+    echo 'GRUB_GFXMODE="1280x800"' | sudo tee -a /etc/default/grub
 fi
 
 # Jana semula konfigurasi GRUB
