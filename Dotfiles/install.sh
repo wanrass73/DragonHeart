@@ -161,7 +161,7 @@ fi
 echo "Mengemas kini tetapan Xfce Desktop..."
 # Tukar path wallpaper:
 xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s "$WALLPAPER_DEST" --type string --create -n || true
-xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/image-style -s 5 # 5 = Zoom/Fill
+xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/image-style -s 5 --create -n # 5 = Zoom/Fill
 
 
 # --- 5. TUKAR SHELL KE FISH ---
