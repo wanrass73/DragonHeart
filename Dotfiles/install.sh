@@ -184,6 +184,14 @@ echo "Menetapkan tema ikon..."
 xfconf-query -c xsettings -p /Net/IconThemeName -s "candy-icons" --create -n || true
 
 
+
+
+# Bersihkan cache Xfce4 dan mulakan semula panel untuk memastikan tema digunakan
+echo "Membersihkan cache Xfce4 dan memulakan semula panel..."
+rm -rf "$HOME/.cache/xfce4/session/"
+xfce4-panel -r || true
+
+
 # --- 5. TUKAR SHELL KE FISH ---
 echo "--- 5. Menukar shell default ke Fish ---"
 chsh -s /usr/bin/fish
@@ -205,7 +213,11 @@ echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee "$THEME_CONF_FILE" > /dev/null
 
 # Tetapkan sesi lalai SDDM kepada Xfce Session
 echo "Menetapkan sesi lalai SDDM kepada Xfce Session..."
-sudo sed -i 's|^Session=.*|Session=xfce.desktop|' "$THEME_CONF_FILE"
+if grep -q "^Session=" "$THEME_CONF_FILE"; then
+    sudo sed -i 's|^Session=.*|Session=xfce.desktop|' "$THEME_CONF_FILE"
+else
+    echo "Session=xfce.desktop" | sudo tee -a "$THEME_CONF_FILE" > /dev/null
+fi
 
 # Salin wallpaper ke direktori tema SDDM sugar-candy
 echo "Menyalin wallpaper ke tema SDDM sugar-candy..."
