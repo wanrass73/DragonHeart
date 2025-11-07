@@ -24,7 +24,7 @@ CONFIG_DIR="$HOME/.config"
 
 # --- 0a. KEMAS KINI MIRRORLIST DENGAN REFLECTOR ---
 echo "--- 0a. Mengemas kini mirrorlist dengan Reflector... ---"
-sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist > /dev/null 2>&1
+sudo reflector --latest 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist > /dev/null 2>&1
 sudo pacman -Syy
 
 # Senarai Aplikasi Teras Penuh (Disahkan melalui pacman -Qs)
