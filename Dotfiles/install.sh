@@ -155,22 +155,12 @@ mkdir -p "$HOME/Music"
 # --- 4b. PENYEDIAAN WALLPAPER ---
 echo "--- 4b. Menyediakan Wallpaper Desktop ---"
 
+# Salin semua fail dan subdirektori dari Dotfiles/Pictures ke $HOME/Pictures
+echo "Menyalin semua gambar dari Dotfiles/Pictures ke $HOME/Pictures..."
+cp -r "$DOTFILES_DIR/Pictures/"* "$HOME/Pictures/"
+
 # Laluan Penuh untuk Wallpaper Anda di SISTEM BARU
-WALLPAPER_DEST="/home/$USER/Pictures/wallpapers/Dr460nized_Honeycomb.png"
-
-# Lokasi fail wallpaper anda di dalam Dotfiles untuk penyalinan
-WALLPAPER_SOURCE="$DOTFILES_DIR/Pictures/wallpapers/Dr460nized_Honeycomb.png"
-
-# Cipta folder wallpapers di $HOME/Pictures
-mkdir -p "$HOME/Pictures/wallpapers"
-
-# Salin fail wallpaper
-if [ -f "$WALLPAPER_SOURCE" ]; then
-    cp "$WALLPAPER_SOURCE" "$WALLPAPER_DEST"
-    echo "Wallpaper Dr460nized_Honeycomb.png berjaya disalin."
-else
-    echo "Ralat: Fail wallpaper tidak dijumpai di $WALLPAPER_SOURCE. Teruskan tanpa wallpaper."
-fi
+WALLPAPER_DEST="$HOME/Pictures/wallpapers/Dr460nized_Honeycomb.png"
 
 # Kemas kini konfigurasi Xfce4
 echo "Mengemas kini tetapan Xfce Desktop..."
