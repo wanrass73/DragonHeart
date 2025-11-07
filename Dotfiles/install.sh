@@ -59,7 +59,7 @@ AUR_PKGS=(
 echo "--- 1. Mengesan dan memasang pemacu grafik... ---"
 if lspci | grep -i 'VGA.*VirtualBox'; then
     echo "Mesin maya VirtualBox dikesan."
-    yes "" | yes | sudo pacman -S --noconfirm virtualbox-guest-utils
+    sudo pacman -S --noconfirm --needed virtualbox-guest-utils
     # Aktifkan perkhidmatan VirtualBox
     sudo systemctl enable vboxservice.service
 elif lspci | grep -i 'VGA.*Intel'; then
@@ -88,17 +88,17 @@ sudo pacman -S --noconfirm --needed --ask 4 $(pacman -Sgq xfce4-goodies)
 
 # Pasang pakej teras yang lain
 echo "Memasang pakej teras individu..."
-yes | sudo pacman -Syu --noconfirm "${CORE_PKGS[@]}"
+sudo pacman -Syu --noconfirm --needed "${CORE_PKGS[@]}"
 
 # --- 2. PASANG CODEC MULTIMEDIA ---
 echo "--- 2. Memasang Codec Multimedia ---"
-yes | sudo pacman -S --noconfirm "${CODEC_PKGS[@]}"
+sudo pacman -S --noconfirm --needed "${CODEC_PKGS[@]}"
 
 # --- 3. PERSIAAPAN PARU & PEMASANGAN AUR ---
 echo "--- 3. Memastikan Paru berada di PATH dan mengemas kini AUR ---"
 
 # Pasang base-devel dan git jika belum ada (diperlukan untuk makepkg)
-yes | sudo pacman -S --noconfirm base-devel git
+sudo pacman -S --noconfirm --needed base-devel git
 
 # Semak jika paru dipasang, jika tidak, pasang dari AUR
 if ! command -v paru &> /dev/null; then
@@ -112,10 +112,10 @@ if ! command -v paru &> /dev/null; then
 fi
 
 # Kemas kini AUR dan pasang pakej
-yes | paru -Syu --noconfirm || true
+paru -Syu --noconfirm --needed --batchinstall || true
 
 echo "--- 3b. Memasang pakej AUR (sddm-sugar-candy-git) ---"
-yes | paru -S --noconfirm "${AUR_PKGS[@]}"
+paru -S --noconfirm --needed --batchinstall "${AUR_PKGS[@]}"
 
 # --- 4. PENYEDIAAN FOLDER KONFIGURASI DAN SIMLINK ---
 echo "--- 4. Menyediakan folder konfigurasi dan Simlink ---"
