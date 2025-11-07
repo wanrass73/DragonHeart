@@ -183,10 +183,6 @@ xfconf-query -c xfce4-session -p /general/SessionName -s "Xfce Session" --create
 echo "Menetapkan tema ikon..."
 xfconf-query -c xsettings -p /Net/IconThemeName -s "candy-icons" --create -n || true
 
-# Tetapkan tema untuk aplikasi Xfce4 (contoh: panel)
-echo "Menetapkan tema untuk aplikasi Xfce4..."
-xfconf-query -c xfce4-panel -p /panels/panel-1/plugin-2/theme -s "Adwaita-Dark" --create -n || true
-
 
 # --- 5. TUKAR SHELL KE FISH ---
 echo "--- 5. Menukar shell default ke Fish ---"
