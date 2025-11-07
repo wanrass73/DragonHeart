@@ -56,7 +56,7 @@ CODEC_PKGS=(
 
 # Pakej AUR (Dipasang menggunakan Paru)
 AUR_PKGS=(
-    sddm-sugar-candy-git candy-icons-git bibata-cursor-theme-bin 
+    sddm-sugar-candy-git candy-icons-git bibata-cursor-theme-bin google-chrome-stable
 )
 
 
