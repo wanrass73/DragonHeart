@@ -195,6 +195,14 @@ sudo mkdir -p "$THEME_CONF_DIR"
 echo "Menulis konfigurasi tema ke $THEME_CONF_FILE..."
 echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee "$THEME_CONF_FILE" > /dev/null
 
+# Salin wallpaper ke direktori tema SDDM sugar-candy
+echo "Menyalin wallpaper ke tema SDDM sugar-candy..."
+sudo cp "$DOTFILES_DIR/grub/themes/dragonheart/garuda_bg_safe.png" "/usr/share/sddm/themes/sugar-candy/Backgrounds/"
+
+# Kemas kini theme.conf SDDM untuk menggunakan wallpaper baharu
+echo "Mengemas kini konfigurasi tema SDDM..."
+sudo sed -i 's|^Background=.*|Background="Backgrounds/garuda_bg_safe.png"|' "/usr/share/sddm/themes/sugar-candy/theme.conf"
+
 # --- 7b. PEMASANGAN FON PENGGUNA ---
 echo "--- 7b. Memasang fon pengguna ---"
 # Cipta direktori fon jika ia tidak wujud
