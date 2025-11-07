@@ -25,7 +25,7 @@ CONFIG_DIR="$HOME/.config"
 # Senarai Aplikasi Teras Penuh (Disahkan melalui pacman -Qs)
 CORE_PKGS=(
     # SHELL & TOOLS
-    fish starship fastfetch lsd eza git sudo base-devel 
+    fish starship fastfetch lsd eza git sudo base-devel picom 
     
     # XFCE4 & UTILITIES
     xfce4 xfce4-goodies 
@@ -123,6 +123,7 @@ rm -rf "$CONFIG_DIR/fish" "$CONFIG_DIR/xfce4" "$CONFIG_DIR/fastfetch"
 ln -s "$DOTFILES_DIR/.config/fish" "$CONFIG_DIR/fish"
 ln -s "$DOTFILES_DIR/.config/xfce4" "$CONFIG_DIR/xfce4"
 ln -s "$DOTFILES_DIR/.config/fastfetch" "$CONFIG_DIR/fastfetch"
+ln -s "$DOTFILES_DIR/.config/picom" "$CONFIG_DIR/picom"
 
 # Symlink untuk fail dot-file terus di $HOME (jika ada)
 # Contoh:
