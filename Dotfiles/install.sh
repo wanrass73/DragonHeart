@@ -22,6 +22,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 DOTFILES_DIR=$(pwd)
 CONFIG_DIR="$HOME/.config"
 
+# --- 0a. KEMAS KINI MIRRORLIST DENGAN REFLECTOR ---
+echo "--- 0a. Mengemas kini mirrorlist dengan Reflector... ---"
+sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+
 # Senarai Aplikasi Teras Penuh (Disahkan melalui pacman -Qs)
 CORE_PKGS=(
     # SHELL & TOOLS
