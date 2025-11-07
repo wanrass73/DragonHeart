@@ -30,7 +30,7 @@ sudo pacman -Syy
 # Senarai Aplikasi Teras Penuh (Disahkan melalui pacman -Qs)
 CORE_PKGS=(
     # SHELL & TOOLS
-    fish starship fastfetch lsd eza git sudo base-devel picom 
+    fish starship fastfetch lsd eza git sudo base-devel picom rsync
     
     # XFCE4 & UTILITIES (Groups handled separately)
     mousepad xfce4-screenshooter catfish # Editor Teks dan Carian
