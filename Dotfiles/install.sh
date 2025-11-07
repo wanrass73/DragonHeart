@@ -249,3 +249,4 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo "✅ PERSIAAPAN DRAGONHEART SELESAI! Sila REBOOT untuk menikmati persediaan baharu."
 
 exec fish
+sudo reboot
