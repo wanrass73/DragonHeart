@@ -120,7 +120,10 @@ fi
 paru -Syu --noconfirm --needed --batchinstall || true
 
 echo "--- 3b. Memasang pakej AUR (sddm-sugar-candy-git) ---"
+echo "AUR_PKGS: ${AUR_PKGS[@]}"
+set -x
 paru -S --noconfirm --needed --batchinstall "${AUR_PKGS[@]}"
+set +x
 
 # --- 4. PENYEDIAAN FOLDER KONFIGURASI DAN SIMLINK ---
 echo "--- 4. Menyediakan folder konfigurasi dan Simlink ---"
@@ -199,7 +202,7 @@ xfce4-panel -r || true
 # Tambah Picom ke autostart Xfce
 echo "Menambah Picom ke autostart Xfce..."
 mkdir -p "$HOME/.config/autostart"
-echo -e "[Desktop Entry]\nType=Application\nExec=picom\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Picom\nComment=Compositor" | tee "$HOME/.config/autostart/picom.desktop" > /dev/null
+echo -e "[Desktop Entry]\nType=Application\nExec=picom\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName=Picom\nComment=Compositor" | tee "$HOME/.config/autostart/picom.desktop"
 
 
 # --- 5. TUKAR SHELL KE FISH ---
