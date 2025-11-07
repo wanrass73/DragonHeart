@@ -27,8 +27,7 @@ CORE_PKGS=(
     # SHELL & TOOLS
     fish starship fastfetch lsd eza git sudo base-devel picom 
     
-    # XFCE4 & UTILITIES
-    xfce4 xfce4-goodies 
+    # XFCE4 & UTILITIES (Groups handled separately)
     mousepad xfce4-screenshooter catfish # Editor Teks dan Carian
     p7zip unrar # Pengurusan Arkib
     thunar-archive-plugin thunar-media-tags-plugin # Plugin Thunar
@@ -81,6 +80,14 @@ fi
 
 # --- 1b. KEMAS KUNI SISTEM DAN PASANG ALAT UTAMA (pacman) ---
 echo "--- 1b. Mengemas kini sistem dan memasang alat asas (pacman) ---"
+
+# Pasang kumpulan XFCE4 secara non-interaktif
+echo "Memasang kumpulan XFCE4..."
+yes | sudo pacman -S --noconfirm --needed $(pacman -Sgq xfce4)
+yes | sudo pacman -S --noconfirm --needed $(pacman -Sgq xfce4-goodies)
+
+# Pasang pakej teras yang lain
+echo "Memasang pakej teras individu..."
 yes | sudo pacman -Syu --noconfirm "${CORE_PKGS[@]}"
 
 # --- 2. PASANG CODEC MULTIMEDIA ---
