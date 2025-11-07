@@ -83,8 +83,8 @@ echo "--- 1b. Mengemas kini sistem dan memasang alat asas (pacman) ---"
 
 # Pasang kumpulan XFCE4 secara non-interaktif
 echo "Memasang kumpulan XFCE4..."
-yes | sudo pacman -S --noconfirm --needed $(pacman -Sgq xfce4)
-yes | sudo pacman -S --noconfirm --needed $(pacman -Sgq xfce4-goodies)
+sudo pacman -S --noconfirm --needed --ask 4 $(pacman -Sgq xfce4)
+sudo pacman -S --noconfirm --needed --ask 4 $(pacman -Sgq xfce4-goodies)
 
 # Pasang pakej teras yang lain
 echo "Memasang pakej teras individu..."
@@ -201,6 +201,7 @@ cp -r "$DOTFILES_DIR/fonts/"* "$HOME/.local/share/fonts/"
 echo "Membina semula cache fon..."
 fc-cache -fv
 
+set -x
 # --- 8. PENYEDIAAN TEMA GRUB ---
 echo "--- 8. Menyediakan tema GRUB ---"
 
@@ -245,6 +246,7 @@ fi
 
 # Jana semula konfigurasi GRUB
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+set +x
 
 echo "✅ PERSIAAPAN DRAGONHEART SELESAI! Sila REBOOT untuk menikmati persediaan baharu."
 
