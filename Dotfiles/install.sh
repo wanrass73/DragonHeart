@@ -28,7 +28,7 @@ CORE_PKGS=(
     fish starship fastfetch lsd eza git sudo base-devel 
     
     # XFCE4 & UTILITIES
-    xfce4 xfce4-goodies materia-gtk-theme 
+    xfce4 xfce4-goodies 
     mousepad xfce4-screenshooter catfish # Editor Teks dan Carian
     p7zip unrar # Pengurusan Arkib
     thunar-archive-plugin thunar-media-tags-plugin # Plugin Thunar
@@ -47,7 +47,7 @@ CORE_PKGS=(
 # Pakej Codec Tambahan (Penting untuk multimedia penuh)
 CODEC_PKGS=(
     gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
-    libdvdcss libmpeg2 libx264 libx265 libvpx
+    libdvdcss libmpeg2 libx264 libvpx
 )
 
 # Pakej AUR (Dipasang menggunakan Paru)
@@ -60,32 +60,32 @@ AUR_PKGS=(
 echo "--- 1. Mengesan dan memasang pemacu grafik... ---"
 if lspci | grep -i 'VGA.*VirtualBox'; then
     echo "Mesin maya VirtualBox dikesan."
-    sudo pacman -S --noconfirm virtualbox-guest-utils
+    yes "" | sudo pacman -S --noconfirm virtualbox-guest-utils
     # Aktifkan perkhidmatan VirtualBox
     sudo systemctl enable vboxservice.service
 elif lspci | grep -i 'VGA.*Intel'; then
     echo "Kad grafik Intel dikesan."
-    sudo pacman -S --noconfirm xf86-video-intel
+    yes "" | sudo pacman -S --noconfirm xf86-video-intel
 elif lspci | grep -i 'VGA.*AMD'; then
     echo "Kad grafik AMD dikesan."
-    sudo pacman -S --noconfirm xf86-video-amdgpu
+    yes "" | sudo pacman -S --noconfirm xf86-video-amdgpu
 elif lspci | grep -i 'VGA.*NVIDIA'; then
     echo "Kad grafik NVIDIA dikesan."
     # Memasang pemacu sumber terbuka 'nouveau'
-    sudo pacman -S --noconfirm xf86-video-nouveau
+    yes "" | sudo pacman -S --noconfirm xf86-video-nouveau
 else
     echo "Tidak dapat mengesan kad grafik yang disokong secara automatik."
     echo "Sila pasang pemacu grafik yang betul secara manual."
 fi
 
 
-# --- 1b. KEMAS KINI SISTEM DAN PASANG ALAT UTAMA (pacman) ---
-echo "--- 1. Mengemas kini sistem dan memasang alat asas (pacman) ---"
-sudo pacman -Syu --noconfirm "${CORE_PKGS[@]}"
+# --- 1b. KEMAS KUNI SISTEM DAN PASANG ALAT UTAMA (pacman) ---
+echo "--- 1b. Mengemas kini sistem dan memasang alat asas (pacman) ---"
+yes "" | sudo pacman -Syu --noconfirm "${CORE_PKGS[@]}"
 
 # --- 2. PASANG CODEC MULTIMEDIA ---
 echo "--- 2. Memasang Codec Multimedia ---"
-sudo pacman -S --noconfirm "${CODEC_PKGS[@]}"
+yes "" | sudo pacman -S --noconfirm "${CODEC_PKGS[@]}"
 
 # --- 3. PERSIAAPAN PARU & PEMASANGAN AUR ---
 echo "--- 3. Memastikan Paru berada di PATH dan mengemas kini AUR ---"
