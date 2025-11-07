@@ -199,6 +199,10 @@ sudo mkdir -p "$THEME_CONF_DIR"
 echo "Menulis konfigurasi tema ke $THEME_CONF_FILE..."
 echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee "$THEME_CONF_FILE" > /dev/null
 
+# Tetapkan sesi lalai SDDM kepada Xfce Session
+echo "Menetapkan sesi lalai SDDM kepada Xfce Session..."
+sudo sed -i 's|^Session=.*|Session=xfce.desktop|' "$THEME_CONF_FILE"
+
 # Salin wallpaper ke direktori tema SDDM sugar-candy
 echo "Menyalin wallpaper ke tema SDDM sugar-candy..."
 sudo cp "$DOTFILES_DIR/grub/themes/dragonheart/garuda_bg_safe.png" "/usr/share/sddm/themes/sugar-candy/Backgrounds/"
