@@ -112,10 +112,10 @@ if ! command -v paru &> /dev/null; then
 fi
 
 # Kemas kini AUR dan pasang pakej
-paru -Syu --noconfirm || true
+yes | paru -Syu --noconfirm || true
 
 echo "--- 3b. Memasang pakej AUR (sddm-sugar-candy-git) ---"
-paru -S --noconfirm "${AUR_PKGS[@]}"
+yes | paru -S --noconfirm "${AUR_PKGS[@]}"
 
 # --- 4. PENYEDIAAN FOLDER KONFIGURASI DAN SIMLINK ---
 echo "--- 4. Menyediakan folder konfigurasi dan Simlink ---"
@@ -124,7 +124,7 @@ echo "--- 4. Menyediakan folder konfigurasi dan Simlink ---"
 mkdir -p "$CONFIG_DIR"
 
 # Buang symlink lama yang mungkin wujud
-rm -rf "$CONFIG_DIR/fish" "$CONFIG_DIR/xfce4" "$CONFIG_DIR/fastfetch"
+rm -rf "$CONFIG_DIR/fish" "$CONFIG_DIR/xfce4" "$CONFIG_DIR/fastfetch" "$CONFIG_DIR/picom"
 
 # Cipta Simlink Baharu
 ln -s "$DOTFILES_DIR/.config/fish" "$CONFIG_DIR/fish"
