@@ -183,7 +183,6 @@ chsh -s /usr/bin/fish
 # --- 6. PENGAKTIFAN PERKHIDMATAN ---
 echo "--- 6. Mengaktifkan SDDM dan NetworkManager ---"
 sudo systemctl enable sddm
-sudo systemctl start sddm # Mula sddm pada pemasangan pertama
 sudo systemctl enable NetworkManager
 
 # --- 7. TUKAR TEMA SDDM ---
