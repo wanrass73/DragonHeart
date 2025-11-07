@@ -60,19 +60,19 @@ AUR_PKGS=(
 echo "--- 1. Mengesan dan memasang pemacu grafik... ---"
 if lspci | grep -i 'VGA.*VirtualBox'; then
     echo "Mesin maya VirtualBox dikesan."
-    yes "" | sudo pacman -S --noconfirm virtualbox-guest-utils
+    yes "" | yes | sudo pacman -S --noconfirm virtualbox-guest-utils
     # Aktifkan perkhidmatan VirtualBox
     sudo systemctl enable vboxservice.service
 elif lspci | grep -i 'VGA.*Intel'; then
     echo "Kad grafik Intel dikesan."
-    yes "" | sudo pacman -S --noconfirm xf86-video-intel
+    yes "" | yes | sudo pacman -S --noconfirm xf86-video-intel
 elif lspci | grep -i 'VGA.*AMD'; then
     echo "Kad grafik AMD dikesan."
-    yes "" | sudo pacman -S --noconfirm xf86-video-amdgpu
+    yes "" | yes | sudo pacman -S --noconfirm xf86-video-amdgpu
 elif lspci | grep -i 'VGA.*NVIDIA'; then
     echo "Kad grafik NVIDIA dikesan."
     # Memasang pemacu sumber terbuka 'nouveau'
-    yes "" | sudo pacman -S --noconfirm xf86-video-nouveau
+    yes "" | yes | sudo pacman -S --noconfirm xf86-video-nouveau
 else
     echo "Tidak dapat mengesan kad grafik yang disokong secara automatik."
     echo "Sila pasang pemacu grafik yang betul secara manual."
@@ -81,17 +81,17 @@ fi
 
 # --- 1b. KEMAS KUNI SISTEM DAN PASANG ALAT UTAMA (pacman) ---
 echo "--- 1b. Mengemas kini sistem dan memasang alat asas (pacman) ---"
-yes "" | sudo pacman -Syu --noconfirm "${CORE_PKGS[@]}"
+yes | sudo pacman -Syu --noconfirm "${CORE_PKGS[@]}"
 
 # --- 2. PASANG CODEC MULTIMEDIA ---
 echo "--- 2. Memasang Codec Multimedia ---"
-yes "" | sudo pacman -S --noconfirm "${CODEC_PKGS[@]}"
+yes | sudo pacman -S --noconfirm "${CODEC_PKGS[@]}"
 
 # --- 3. PERSIAAPAN PARU & PEMASANGAN AUR ---
 echo "--- 3. Memastikan Paru berada di PATH dan mengemas kini AUR ---"
 
 # Pasang base-devel dan git jika belum ada (diperlukan untuk makepkg)
-sudo pacman -S --noconfirm base-devel git
+yes | sudo pacman -S --noconfirm base-devel git
 
 # Semak jika paru dipasang, jika tidak, pasang dari AUR
 if ! command -v paru &> /dev/null; then
@@ -100,7 +100,7 @@ if ! command -v paru &> /dev/null; then
         cd /tmp
         git clone https://aur.archlinux.org/paru.git
         cd paru
-        makepkg -si --noconfirm
+        yes | makepkg -si --noconfirm
     )
 fi
 
