@@ -79,7 +79,7 @@ echo "--- 3. MENYALIN KONFIGURASI SELURUH SISTEM (SUDO DIPERLUKAN) ---"
 echo "Mengkonfigurasi SDDM..."
 sudo cp -f "$DOTFILES_DIR/etc/sddm.conf" "/etc/sddm.conf"
 sudo systemctl enable sddm
-sudo systemctl start sddm
+
 
 echo "Mengkonfigurasi GRUB..."
 sudo cp -f "$DOTFILES_DIR/etc/default/grub" "/etc/default/grub"
