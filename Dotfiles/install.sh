@@ -60,8 +60,7 @@ cp -rf "$DOTFILES_DIR/.config/Thunar" "$USER_HOME/.config/"
 cp -rf "$DOTFILES_DIR/.config/fish" "$USER_HOME/.config/"
 cp -f "$DOTFILES_DIR/.config/starship.toml" "$USER_HOME/.config/"
 cp -f "$DOTFILES_DIR/.gitconfig" "$USER_HOME/"
-cp -f "$DOTFILES_DIR/.bashrc" "$USER_HOME/"
-cp -f "$DOTFILES_DIR/.bash_profile" "$USER_HOME/"
+
 mkdir -p "$USER_HOME/Pictures/wallpapers"
 cp -f "$DOTFILES_DIR/Pictures/wallpapers/Dr460nized_Honeycomb.png" "$USER_HOME/Pictures/wallpapers/"
 
