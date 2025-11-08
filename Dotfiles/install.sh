@@ -84,7 +84,12 @@ sudo systemctl enable sddm
 echo "Mengkonfigurasi GRUB..."
 sudo cp -f "$DOTFILES_DIR/etc/default/grub" "/etc/default/grub"
 sudo cp -f "$DOTFILES_DIR/boot/grub/garuda_bg_safe.png" "/boot/grub/"
-sudo cp -f "$DOTFILES_DIR/boot/grub/terminus-14.pf2" "/usr/share/grub/fonts/"
+# Pastikan direktori fon GRUB wujud
+if [ -f "/usr/share/grub/fonts" ]; then
+    sudo rm "/usr/share/grub/fonts" # Padam jika ia adalah fail
+fi
+sudo mkdir -p "/usr/share/grub/fonts"
+sudo cp -f "$DOTFILES_DIR/boot/grub/terminus-14.pf2" "/usr/share/grub/fonts/" # Salin fon
 sudo sed -i 's|^GRUB_FONT=".*"|GRUB_FONT="/usr/share/grub/fonts/terminus-14.pf2"|g' "/etc/default/grub"
 if ! grep -q "^GRUB_FONT=" "/etc/default/grub"; then
     sudo sed -i "/# Tambah baris ini untuk menetapkan fon tersuai:/a GRUB_FONT=\"/usr/share/grub/fonts/terminus-14.pf2\"" "/etc/default/grub"
