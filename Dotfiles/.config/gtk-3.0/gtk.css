@@ -1,0 +1,16 @@
+/* Menambah outline dual-tone (Magenta & Cyan) pada tetingkap aktif */
+.window:focus {
+    /* Lapisan 1: Cyan terang (Inner Glow/Outline) */
+    box-shadow: 
+        0 0 0 4px rgba(0, 255, 255, 0.8), /* Cyan Neon */
+        /* Lapisan 2: Magenta terang (Outer Glow/Shadow) */
+        0 0 10px 6px rgba(255, 0, 255, 0.5); /* Magenta Vivid */
+    border: none; 
+}
+/* Memastikan elemen lain (panel, butang) masih rounded */
+#xfce4-panel {
+    border-radius: 8px;
+}
+.window, .background, .view, .notebook, .button, .entry, .frame, .menu, .menuitem {
+    border-radius: 8px;
+}
