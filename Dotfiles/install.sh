@@ -5,17 +5,18 @@
 set -e
 
 # Tentukan direktori Dotfiles secara dinamik
-DOTFILES_DIR="$(dirname "$(realpath "$0")")"
+DOTFILES_DIR="$(dirname "$(realpath \"$0\")")"
 USER_HOME="$HOME"
 
-echo "--- MULA PEMASANGAN DRAGONHEART DOTFILES ---"
+figlet -w 120 "DragonHeart"
+figlet -w 120 "Installer"
 
 # --- 0. Maklumat Penting ---
-echo "--- 0. MAKLUMAT PENTING SEBELUM PEMASANGAN ---"
+figlet -w 120 "0. Important Info"
 read -p "Pastikan anda telah memasang sistem Arch Linux asas. Tekan sebarang kekunci untuk meneruskan..."
 
 # --- 1. Pemasangan Pakej Rasmi & AUR ---
-echo "--- 1. MEMASANG PAKEJ-PAKEJ ---"
+figlet -w 120 "1. Installing Pkgs"
 
 # Pakej Rasmi
 if [ -f "$DOTFILES_DIR/pkglist_official.txt" ]; then
@@ -50,12 +51,12 @@ fi
 
 
 # --- 2. Aktifkan Perkhidmatan Rangkaian ---
-echo "--- 2. MENGAKTIFKAN NETWORKMANAGER ---"
+figlet -w 120 "2. Networking"
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
 
 # --- 3. Penyalinan Fail Konfigurasi Pengguna ---
-echo "--- 3. MENYALIN FAIL-FAIL KONFIGURASI PENGGUNA KE $USER_HOME ---"
+figlet -w 120 "3. User Configs"
 mkdir -p "$USER_HOME/.config"
 cp -rf "$DOTFILES_DIR/.config/xfce4" "$USER_HOME/.config/"
 cp -rf "$DOTFILES_DIR/.config/picom" "$USER_HOME/.config/"
@@ -85,7 +86,7 @@ cp -r "$DOTFILES_DIR/themes/Materia-Vivid/" "$USER_HOME/.themes/"
 cp -r "$DOTFILES_DIR/themes/Custom-Rounded/" "$USER_HOME/.themes/"
 
 # --- 4. Penyalinan Konfigurasi Seluruh Sistem ---
-echo "--- 4. MENYALIN KONFIGURASI SELURUH SISTEM (SUDO DIPERLUKAN) ---"
+figlet -w 120 "4. System Configs"
 echo "Mengkonfigurasi SDDM..."
 sudo cp -f "$DOTFILES_DIR/etc/sddm.conf" "/etc/sddm.conf"
 sudo systemctl enable sddm
@@ -112,7 +113,7 @@ echo "Menjana semula konfigurasi GRUB..."
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # --- 5. Konfigurasi Shell (Fish) ---
-echo "--- 5. MENGKONFIGURASI SHELL (FISH) ---"
+figlet -w 120 "5. Shell Config"
 if command -v fish &> /dev/null; then
     echo "Menukar shell lalai kepada Fish untuk pengguna $USER..."
     chsh -s "$(command -v fish)" "$USER"
@@ -121,11 +122,11 @@ else
 fi
 
 # --- 6. Arahan Tambahan ---
-echo "--- 6. ARAHAN TAMBAHAN & TINDAKAN PASCA PEMASANGAN ---"
+figlet -w 120 "6. Final Notes"
 echo "✅ Pemasangan Dotfiles asas telah selesai."
 echo "Sila pertimbangkan untuk memasang pemacu grafik khusus (NVIDIA, AMD, Intel) secara manual."
 echo "Jangan lupa untuk menyalin fail sensitif seperti kunci SSH dan GPG secara manual."
 
-echo "--- PEMASANGAN SELESAI ---"
+figlet -w 120 "Done!"
 read -p "Sistem akan reboot sekarang. Tekan sebarang kekunci untuk reboot atau Ctrl+C untuk membatalkan."
 sudo reboot

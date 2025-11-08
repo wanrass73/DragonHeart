@@ -95,3 +95,4 @@ xfwm4-themes
 yt-dlp
 zip
 zram-generator
+figlet
