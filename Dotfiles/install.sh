@@ -49,8 +49,13 @@ else
 fi
 
 
-# --- 2. Penyalinan Fail Konfigurasi Pengguna ---
-echo "--- 2. MENYALIN FAIL-FAIL KONFIGURASI PENGGUNA KE $USER_HOME ---"
+# --- 2. Aktifkan Perkhidmatan Rangkaian ---
+echo "--- 2. MENGAKTIFKAN NETWORKMANAGER ---"
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
+
+# --- 3. Penyalinan Fail Konfigurasi Pengguna ---
+echo "--- 3. MENYALIN FAIL-FAIL KONFIGURASI PENGGUNA KE $USER_HOME ---"
 mkdir -p "$USER_HOME/.config"
 cp -rf "$DOTFILES_DIR/.config/xfce4" "$USER_HOME/.config/"
 cp -rf "$DOTFILES_DIR/.config/picom" "$USER_HOME/.config/"
@@ -79,12 +84,16 @@ mkdir -p "$USER_HOME/.themes"
 cp -r "$DOTFILES_DIR/themes/Materia-Vivid/" "$USER_HOME/.themes/"
 cp -r "$DOTFILES_DIR/themes/Custom-Rounded/" "$USER_HOME/.themes/"
 
-# --- 3. Penyalinan Konfigurasi Seluruh Sistem ---
-echo "--- 3. MENYALIN KONFIGURASI SELURUH SISTEM (SUDO DIPERLUKAN) ---"
+# --- 4. Penyalinan Konfigurasi Seluruh Sistem ---
+echo "--- 4. MENYALIN KONFIGURASI SELURUH SISTEM (SUDO DIPERLUKAN) ---"
 echo "Mengkonfigurasi SDDM..."
 sudo cp -f "$DOTFILES_DIR/etc/sddm.conf" "/etc/sddm.conf"
 sudo systemctl enable sddm
 
+# Konfigurasi Latar Belakang SDDM
+echo "Mengkonfigurasi latar belakang SDDM..."
+sudo cp -f "$DOTFILES_DIR/Pictures/wallpapers/Malefor.jpg" "/usr/share/sddm/themes/sugar-candy/Backgrounds/"
+sudo sed -i 's|^Background=.*|Background="Backgrounds/Malefor.jpg"|g' "/usr/share/sddm/themes/sugar-candy/theme.conf"
 
 echo "Mengkonfigurasi GRUB..."
 sudo cp -f "$DOTFILES_DIR/etc/default/grub" "/etc/default/grub"
@@ -102,8 +111,8 @@ fi
 echo "Menjana semula konfigurasi GRUB..."
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-# --- 4. Konfigurasi Shell (Fish) ---
-echo "--- 4. MENGKONFIGURASI SHELL (FISH) ---"
+# --- 5. Konfigurasi Shell (Fish) ---
+echo "--- 5. MENGKONFIGURASI SHELL (FISH) ---"
 if command -v fish &> /dev/null; then
     echo "Menukar shell lalai kepada Fish untuk pengguna $USER..."
     chsh -s "$(command -v fish)" "$USER"
@@ -111,8 +120,8 @@ else
     echo "Amaran: Fish shell tidak ditemui."
 fi
 
-# --- 5. Arahan Tambahan ---
-echo "--- 5. ARAHAN TAMBAHAN & TINDAKAN PASCA PEMASANGAN ---"
+# --- 6. Arahan Tambahan ---
+echo "--- 6. ARAHAN TAMBAHAN & TINDAKAN PASCA PEMASANGAN ---"
 echo "✅ Pemasangan Dotfiles asas telah selesai."
 echo "Sila pertimbangkan untuk memasang pemacu grafik khusus (NVIDIA, AMD, Intel) secara manual."
 echo "Jangan lupa untuk menyalin fail sensitif seperti kunci SSH dan GPG secara manual."
