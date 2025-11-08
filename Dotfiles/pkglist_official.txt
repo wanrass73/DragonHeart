@@ -1,9 +1,6 @@
-arc-gtk-theme
 base
 base-devel
-bibata-cursor-theme-bin
 btrfs-progs
-candy-icons-git
 chafa
 clang
 cmake
@@ -18,7 +15,6 @@ fish
 garcon
 gemini-cli
 git
-google-chrome
 grub
 gst-plugins-bad
 gst-plugins-ugly
@@ -28,7 +24,6 @@ linux
 linux-firmware
 linux-headers
 lsd
-matcha-gtk-theme
 materia-gtk-theme
 mousepad
 mugshot
@@ -36,8 +31,6 @@ nano
 network-manager-applet
 papirus-icon-theme
 parole
-paru
-paru-debug
 pavucontrol
 picom
 pipewire
@@ -46,7 +39,6 @@ pipewire-pulse
 qt5-declarative
 ristretto
 sddm
-sddm-sugar-candy-git
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
