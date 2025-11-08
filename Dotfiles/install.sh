@@ -61,8 +61,18 @@ cp -rf "$DOTFILES_DIR/.config/fish" "$USER_HOME/.config/"
 cp -f "$DOTFILES_DIR/.config/starship.toml" "$USER_HOME/.config/"
 cp -f "$DOTFILES_DIR/.gitconfig" "$USER_HOME/"
 
+# Cipta direktori pengguna standard
+mkdir -p "$USER_HOME/Downloads"
+mkdir -p "$USER_HOME/Documents"
+mkdir -p "$USER_HOME/Music"
+
+# Salin Fail Wallpaper
 mkdir -p "$USER_HOME/Pictures/wallpapers"
 cp -f "$DOTFILES_DIR/Pictures/wallpapers/Dr460nized_Honeycomb.png" "$USER_HOME/Pictures/wallpapers/"
+
+# Salin Fail Ikon (untuk Fastfetch dll.)
+mkdir -p "$USER_HOME/Pictures/icons"
+cp -r "$DOTFILES_DIR/Pictures/icons/" "$USER_HOME/Pictures/"
 
 # --- 3. Penyalinan Konfigurasi Seluruh Sistem ---
 echo "--- 3. MENYALIN KONFIGURASI SELURUH SISTEM (SUDO DIPERLUKAN) ---"
