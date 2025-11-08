@@ -4,5 +4,4 @@ candy-icons-git
 google-chrome
 matcha-gtk-theme
 paru
-paru-debug
 sddm-sugar-candy-git
