@@ -77,6 +77,7 @@ cp -r "$DOTFILES_DIR/Pictures/icons/" "$USER_HOME/Pictures/"
 # Salin Tema
 mkdir -p "$USER_HOME/.themes"
 cp -r "$DOTFILES_DIR/themes/Materia-Vivid/" "$USER_HOME/.themes/"
+cp -r "$DOTFILES_DIR/themes/Custom-Rounded/" "$USER_HOME/.themes/"
 
 # --- 3. Penyalinan Konfigurasi Seluruh Sistem ---
 echo "--- 3. MENYALIN KONFIGURASI SELURUH SISTEM (SUDO DIPERLUKAN) ---"
