@@ -4,8 +4,14 @@
 # Hentikan sekiranya berlaku ralat
 set -e
 
+# --- PREREQUISITE: Install figlet if not present ---
+if ! command -v figlet &> /dev/null; then
+    echo "figlet tidak ditemui. Memasang figlet..."
+    sudo pacman -S --noconfirm figlet
+fi
+
 # Tentukan direktori Dotfiles secara dinamik
-DOTFILES_DIR="$(dirname "$(realpath \"$0\")")"
+DOTFILES_DIR="$(dirname "$(realpath "$0")")"
 USER_HOME="$HOME"
 
 figlet -w 120 "DragonHeart"
