@@ -68,7 +68,7 @@ mkdir -p "$USER_HOME/Music"
 
 # Salin Fail Wallpaper
 mkdir -p "$USER_HOME/Pictures/wallpapers"
-cp -f "$DOTFILES_DIR/Pictures/wallpapers/Dr460nized_Honeycomb.png" "$USER_HOME/Pictures/wallpapers/"
+cp -r "$DOTFILES_DIR/Pictures/wallpapers/" "$USER_HOME/Pictures/"
 
 # Salin Fail Ikon (untuk Fastfetch dll.)
 mkdir -p "$USER_HOME/Pictures/icons"
