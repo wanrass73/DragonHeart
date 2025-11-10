@@ -91,6 +91,12 @@ mkdir -p "$USER_HOME/.themes"
 cp -r "$DOTFILES_DIR/themes/Materia-Vivid/" "$USER_HOME/.themes/"
 cp -r "$DOTFILES_DIR/themes/Custom-Rounded/" "$USER_HOME/.themes/"
 
+# Salin dan Pasang Fon
+echo "Memasang fon..."
+mkdir -p "$USER_HOME/.local/share/fonts"
+cp -r "$DOTFILES_DIR/fonts/FiraCode/"* "$USER_HOME/.local/share/fonts/"
+fc-cache -fv
+
 # --- 4. Penyalinan Konfigurasi Seluruh Sistem ---
 figlet -w 120 "4. System Configs"
 echo "Mengkonfigurasi SDDM..."
