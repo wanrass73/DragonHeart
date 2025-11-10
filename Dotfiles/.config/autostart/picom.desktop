@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Picom
+Comment=X11 compositor for effects like transparency and shadows
+Exec=picom --experimental-backends
+Type=Application
+Terminal=false
+StartupNotify=false
