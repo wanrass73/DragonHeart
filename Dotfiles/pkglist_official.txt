@@ -96,3 +96,4 @@ yt-dlp
 zip
 zram-generator
 figlet
+starship
