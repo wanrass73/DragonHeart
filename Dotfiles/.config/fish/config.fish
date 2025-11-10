@@ -3,7 +3,7 @@
 # ================================================================= #
 
 # 0. TAMBAH LALUAN (PENTING untuk Starship)
-fish_add_path ~/.local/bin
+fish_add_path /usr/local/bin
 
 # Fastfetch - Menjalankan konfigurasi yang betul berdasarkan terminal
 switch (basename (string replace -- ' ' '' $TERM))
