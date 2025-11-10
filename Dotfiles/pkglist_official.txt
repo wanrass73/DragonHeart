@@ -97,3 +97,4 @@ zip
 zram-generator
 figlet
 starship
+lolcat
